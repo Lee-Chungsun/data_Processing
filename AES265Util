@@ -2,13 +2,13 @@ public class AES256Util {
 	private String iv;
 	private Key keySpec;   
 
-    /**
+	/**
 	 * 16자리의 키값을 입력하여 객체를 생성한다.
 	 * 
 	 * @param aeskey 암/복호화를 위한 키값
 	 * @throws 키값의 길이가 16이하일 경우 Exception 발생
 	 */
-	public AES256Util(String aesKey) throws UnsupportedEncodingException {
+	 public AES256Util(String aesKey) throws UnsupportedEncodingException {
 		this.iv = aesKey.substring(0, 16);
 		byte[] keyBytes = new byte[16];
 		byte[] bkey = aesKey.getBytes("UTF-8");
@@ -22,7 +22,7 @@ public class AES256Util {
 		this.keySpec = keySpec;
 	}
 
-    /**
+    	/**
 	 * AES256 으로 암호화 한다.
 	 * 
 	 * @param str 암호화할 문자열
@@ -36,7 +36,7 @@ public class AES256Util {
 		return enStr;
 	}
 
-    /**
+    	/**
 	 * AES256으로 암호화된 txt 를 복호화한다.
 	 * 
 	 * @param str 복호화할 문자열
