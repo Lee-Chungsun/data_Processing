@@ -1,0 +1,12 @@
+if(! val.equals("")){
+	if(val.length() != val.getBytes().length){
+		String regEx = ".*[^a-zA-Zㄱ-ㅎㅏ-ㅣ가-힣0-9~`!@#$%^&*?()\\\\+|\\-.\\[\\]\\{\\}\\/:;,_=<>'\\s\\n\\t].*";
+								
+		Pattern hanjaPattern = Pattern.compile(regEx);
+		Matcher hanjaMatcher = hanjaPattern.matcher(val);
+								
+		f(hanjaMatcher.find()) {
+			val = val.replaceAll("[^a-zA-Zㄱ-ㅎㅏ-ㅣ가-힣0-9~`!@#$%^&*?()\\\\+|\\-.\\[\\]\\{\\}\\/:;,_=<>'\\s\\n\\t]", " ");
+		}
+	}
+}
