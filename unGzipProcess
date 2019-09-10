@@ -1,0 +1,48 @@
+/**
+ * gZip 형식 압축해제
+ * 
+ * MethodName : GZipUnComp
+ * 
+ * @param byte[] bytes
+ * @return
+ */
+static public byte[] GZipUnComp(byte[] bytes){
+	byte[] arrBody = null;
+	byte[] buffer = null;
+	GZIPInputStream gis = null;
+	ByteArrayOutputStream baos = null;
+	
+	try{
+		buffer = new byte[1024];
+
+		gis = new GZIPInputStream(new ByteArrayInputStream(Base64.decodeBase64(bytes)));
+		baos = new ByteArrayOutputStream();
+		
+		int length=0;
+		while((length=gis.read(buffer))>0){
+			baos.write(buffer,0, length);
+		}
+		gis.close();
+		baos.flush();
+		baos.close();
+		
+		arrBody = baos.toByteArray();
+		
+	}catch(Exception e){
+		e.printStackTrace();
+	}finally{
+		try{
+			if(baos!=null){
+				baos.close();
+				baos = null;
+			}
+			if(gis!=null){
+				gis.close();
+				gis = null;
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	return arrBody;
+}
