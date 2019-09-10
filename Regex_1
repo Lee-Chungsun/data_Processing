@@ -1,0 +1,22 @@
+List byteChange = new ArrayList<String>();
+if(! val.equals("")){
+    try {
+		if(val.length() != val.getBytes("EUC-KR").length){
+			for(int i = 0; i<val.length(); i++){
+				char temp = val.charAt(i);
+				if((int)temp > 999){
+					if(Character.getType(temp) != 5){
+						byteChange.add(temp);
+					}
+				}
+			}
+			for(Object cha : byteChange){
+				val = val.replaceAll(cha.toString(), " ");
+			}
+		}
+	} catch (UnsupportedEncodingException e) {							
+}
+String regEx = ".*[\u2e80-\u2eff\u31c0-\u31ef\u3200-\u32ff\u3400-\u4dbf\u4e00-\u9fbf\uf900-\ufaff].*";
+if(val.matches(regEx)){
+   val = val.replaceAll("[\u2e80-\u2eff\u31c0-\u31ef\u3200-\u32ff\u3400-\u4dbf\u4e00-\u9fbf\uf900-\ufaff]", " ");
+}
